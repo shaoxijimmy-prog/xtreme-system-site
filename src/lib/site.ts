@@ -3,7 +3,7 @@ export const SITE = {
   title: 'XtremeSystem | Refurbished computers, homelab, and AI automation',
   description:
     'A practical tech blog and project showcase from XtremeSystem covering refurbished computers, IT retail workflows, homelab infrastructure, and AI automation.',
-  url: 'https://xtreme-systems.com',
+  url: 'https://lab.xtreme-systems.com',
   storeUrl: 'https://xtremesystems.co.nz',
   image: '/images/hero-lab.svg'
 };
