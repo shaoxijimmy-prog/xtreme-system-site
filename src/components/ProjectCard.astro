@@ -1,0 +1,9 @@
+---
+interface Props { title: string; summary: string; status: string; stack?: string[]; href?: string; featured?: boolean; }
+const { title, summary, status, stack = [], href = '/projects/', featured = false } = Astro.props;
+---
+<article class:list={['project-card', { featured }]}>
+  <div class="card-topline"><span>{status}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></div>
+  <h3><a href={href}>{title}</a></h3><p>{summary}</p>
+  {stack.length > 0 && <ul class="tag-list" aria-label={`${title} stack`}>{stack.map((tag) => <li>{tag}</li>)}</ul>}
+</article>

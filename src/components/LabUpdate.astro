@@ -1,0 +1,6 @@
+---
+interface Props { date: string; title: string; summary: string; }
+const { date, title, summary } = Astro.props;
+const formatted = new Intl.DateTimeFormat('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(date));
+---
+<article class="lab-update"><time datetime={date}>{formatted}</time><div><h3>{title}</h3><p>{summary}</p></div></article>

@@ -1,0 +1,7 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Projects" description="XtremeSystem project showcase for automation platforms, Shopify tools, local AI, TrueNAS storage, and Raspberry Pi monitoring."><section class="page-hero compact"><div class="container"><h1>Projects</h1><p>Internal tools and lab builds designed to make refurbished IT retail faster, clearer, and more reliable.</p></div></section><section class="section"><div class="container project-grid page-grid">{projects.map((project) => <ProjectCard title={project.data.title} summary={project.data.summary} status={project.data.status} stack={project.data.stack} href={`/projects/${project.id}/`} featured={project.data.featured} />)}</div></section></BaseLayout>

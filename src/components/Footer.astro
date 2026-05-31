@@ -1,0 +1,12 @@
+---
+import { SITE, navItems } from '@lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">XS</span><span class="brand-copy"><strong>{SITE.name}</strong><span>Refurbished computers, homelab, AI automation.</span></span></a><p>Practical notes from the bench: store operations, automation tools, storage builds, monitoring nodes, and local AI experiments.</p></div>
+    <nav aria-label="Footer navigation">{navItems.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+    <div class="footer-contact"><span>Retail and service enquiries</span><a href={SITE.storeUrl} target="_blank" rel="noopener">xtremesystems.co.nz</a></div>
+  </div>
+  <div class="container footer-bottom"><span>Copyright {year} {SITE.name}.</span><span>Built with Astro for Cloudflare Pages.</span></div>
+</footer>
