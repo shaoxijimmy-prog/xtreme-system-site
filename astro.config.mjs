@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://xtreme-systems.com',
+  site: 'https://lab.xtreme-systems.com',
   prefetch: true,
   build: {
     format: 'directory'
