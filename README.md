@@ -39,3 +39,7 @@ Use these settings:
 - Blog posts: `src/content/blog/*.md`
 - Project pages/cards: `src/content/projects/*.md`
 - Lab updates: `src/data/labUpdates.ts`
+
+## Guide
+
+See `docs/website-build-guide.md` for a rough guide to how this website is structured, updated, and deployed.
