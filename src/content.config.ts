@@ -8,8 +8,11 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     author: z.string().default('XtremeSystem Lab'),
     categories: z.array(z.string()).default([]),
+    image: z.string().url().optional(),
+    imageAlt: z.string().optional(),
     draft: z.boolean().default(false)
   })
 });
@@ -22,7 +25,9 @@ const projects = defineCollection({
     status: z.string(),
     stack: z.array(z.string()).default([]),
     order: z.number().default(100),
-    featured: z.boolean().default(false)
+    featured: z.boolean().default(false),
+    image: z.string().url().optional(),
+    imageAlt: z.string().optional()
   })
 });
 
