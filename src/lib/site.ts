@@ -5,7 +5,7 @@ export const SITE = {
     'A practical tech blog and project showcase from XtremeSystem covering refurbished computers, IT retail workflows, homelab infrastructure, and AI automation.',
   url: 'https://lab.xtreme-systems.com',
   storeUrl: 'https://xtremesystems.co.nz',
-  image: '/images/hero-lab.svg'
+  image: 'https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1600'
 };
 
 export const navItems = [
