@@ -1,5 +1,11 @@
 export const labUpdates = [
   {
+    date: '2026-06-02',
+    title: 'Docking station comparison guide',
+    summary: 'Compared the refurbished USB-C, Thunderbolt, Surface, Dell, Lenovo, HP, Targus, Belkin, Toshiba, OWC, and Elgato docks currently visible on the store.',
+    href: '/blog/docking-station-comparison-xtremesystems-2026/'
+  },
+  {
     date: '2026-05-20',
     title: 'TrueNAS pool refresh',
     summary: 'Validated drive health checks, snapshot policy, and offsite backup flow for the storage lab.'
