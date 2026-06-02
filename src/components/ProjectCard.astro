@@ -1,9 +1,52 @@
 ---
-interface Props { title: string; summary: string; status: string; stack?: string[]; href?: string; featured?: boolean; }
-const { title, summary, status, stack = [], href = '/projects/', featured = false } = Astro.props;
+interface Props {
+  title: string;
+  summary: string;
+  status: string;
+  stack?: string[];
+  href?: string;
+  featured?: boolean;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  title,
+  summary,
+  status,
+  stack = [],
+  href = '/projects/',
+  featured = false,
+  image,
+  imageAlt = ''
+} = Astro.props;
+
+const fallbackImages = [
+  'https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://images.pexels.com/photos/29238152/pexels-photo-29238152.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://images.pexels.com/photos/2582934/pexels-photo-2582934.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://images.pexels.com/photos/10782402/pexels-photo-10782402.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'https://images.pexels.com/photos/13279384/pexels-photo-13279384.jpeg?auto=compress&cs=tinysrgb&w=1200'
+];
+const imageIndex = [...title].reduce((total, char) => total + char.charCodeAt(0), 0) % fallbackImages.length;
+const cardImage = image ?? fallbackImages[imageIndex];
+const cardImageAlt = imageAlt || `${title} project image`;
 ---
-<article class:list={['project-card', { featured }]}>
-  <div class="card-topline"><span>{status}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></div>
-  <h3><a href={href}>{title}</a></h3><p>{summary}</p>
-  {stack.length > 0 && <ul class="tag-list" aria-label={`${title} stack`}>{stack.map((tag) => <li>{tag}</li>)}</ul>}
+
+<article class:list={['project-card', { featured, 'has-image': true }]}>
+  <img class="project-card-image" src={cardImage} alt={cardImageAlt} width="960" height="540" loading="lazy" />
+  <div class="card-topline">
+    <span>{status}</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17 17 7M9 7h8v8" />
+    </svg>
+  </div>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{summary}</p>
+  {stack.length > 0 && (
+    <ul class="tag-list" aria-label={`${title} stack`}>
+      {stack.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
 </article>
