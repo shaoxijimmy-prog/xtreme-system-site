@@ -1,0 +1,53 @@
+.project-card-image {
+  width: calc(100% + 44px);
+  max-width: none;
+  margin: -22px -22px 0;
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.project-card.featured .project-card-image {
+  aspect-ratio: 16 / 7;
+}
+
+.blog-card.has-image {
+  grid-template-columns: 184px 140px 1fr;
+}
+
+.blog-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.article-cover,
+.about-photo,
+.contact-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.article-cover {
+  margin-top: 28px;
+  box-shadow: var(--shadow);
+}
+
+.about-photo {
+  margin-top: 24px;
+}
+
+.contact-card-image {
+  margin-bottom: 28px;
+}
+
+@media (max-width: 680px) {
+  .blog-card.has-image {
+    grid-template-columns: 1fr;
+  }
+}
