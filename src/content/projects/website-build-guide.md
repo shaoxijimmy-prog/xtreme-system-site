@@ -8,6 +8,8 @@ stack:
   - Cloudflare Pages
 order: 6
 featured: false
+image: https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80
+imageAlt: Code editor on a laptop for website build documentation
 ---
 
 This project documents how the XtremeSystem lab website was built and how it should be maintained.
