@@ -1,8 +1,24 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
-export async function getStaticPaths() { const projects = await getCollection('projects'); return projects.map((project) => ({ params: { slug: project.id }, props: { project } })); }
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
 const { project } = Astro.props;
 const { Content } = await render(project);
+const fallbackImages = [
+  'https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/29238152/pexels-photo-29238152.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/2582934/pexels-photo-2582934.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/10782402/pexels-photo-10782402.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/13279384/pexels-photo-13279384.jpeg?auto=compress&cs=tinysrgb&w=1600'
+];
+const imageIndex = [...project.data.title].reduce((total, char) => total + char.charCodeAt(0), 0) % fallbackImages.length;
+const coverImage = project.data.image ?? fallbackImages[imageIndex];
+const coverAlt = project.data.imageAlt ?? `${project.data.title} project image`;
 ---
-<BaseLayout title={project.data.title} description={project.data.summary}><article class="article project-article"><header class="article-header container"><a class="text-link" href="/projects/">Back to projects</a><div class="project-status">{project.data.status}</div><h1>{project.data.title}</h1><p>{project.data.summary}</p><ul class="tag-list">{project.data.stack.map((tag) => <li>{tag}</li>)}</ul></header><div class="container prose"><Content /></div></article></BaseLayout>
+<BaseLayout title={project.data.title} description={project.data.summary} image={coverImage}>
+  <article class="article project-article"><header class="article-header container"><a class="text-link" href="/projects/">Back to projects</a><div class="project-status">{project.data.status}</div><h1>{project.data.title}</h1><p>{project.data.summary}</p><img class="article-cover" src={coverImage} alt={coverAlt} width="1200" height="675" loading="eager" /><ul class="tag-list">{project.data.stack.map((tag) => <li>{tag}</li>)}</ul></header><div class="container prose"><Content /></div></article>
+</BaseLayout>
