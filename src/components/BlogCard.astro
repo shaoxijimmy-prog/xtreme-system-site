@@ -1,7 +1,40 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-interface Props { post: CollectionEntry<'blog'>; }
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
 const { post } = Astro.props;
-const date = new Intl.DateTimeFormat('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' }).format(post.data.pubDate);
+const date = new Intl.DateTimeFormat('en-NZ', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric'
+}).format(post.data.pubDate);
+
+const categoryImages: Record<string, string> = {
+  Automation: 'https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  Homelab: 'https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  Hardware: 'https://images.pexels.com/photos/2582934/pexels-photo-2582934.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'AI Lab': 'https://images.pexels.com/photos/10782402/pexels-photo-10782402.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'Buying Guide': 'https://images.pexels.com/photos/13279384/pexels-photo-13279384.jpeg?auto=compress&cs=tinysrgb&w=1200'
+};
+const primaryCategory = post.data.categories[0] ?? '';
+const cardImage =
+  post.data.image ??
+  categoryImages[primaryCategory] ??
+  'https://images.pexels.com/photos/29238152/pexels-photo-29238152.jpeg?auto=compress&cs=tinysrgb&w=1200';
+const cardImageAlt = post.data.imageAlt ?? `${post.data.title} article image`;
 ---
-<article class="blog-card"><div class="blog-card-meta"><time datetime={post.data.pubDate.toISOString()}>{date}</time>{post.data.categories[0] && <span>{post.data.categories[0]}</span>}</div><div><h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3><p>{post.data.description}</p></div></article>
+
+<article class:list={['blog-card', { 'has-image': true }]}>
+  <img class="blog-card-image" src={cardImage} alt={cardImageAlt} width="520" height="330" loading="lazy" />
+  <div class="blog-card-meta">
+    <time datetime={post.data.pubDate.toISOString()}>{date}</time>
+    {post.data.categories[0] && <span>{post.data.categories[0]}</span>}
+  </div>
+  <div>
+    <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+    <p>{post.data.description}</p>
+  </div>
+</article>
