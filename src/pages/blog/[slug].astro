@@ -10,13 +10,13 @@ const { Content } = await render(post);
 const date = new Intl.DateTimeFormat('en-NZ', { day: 'numeric', month: 'long', year: 'numeric' }).format(post.data.pubDate);
 const categoryImages: Record<string, string> = {
   Automation: 'https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1600',
-  Homelab: 'https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1600',
-  Hardware: 'https://images.pexels.com/photos/2582934/pexels-photo-2582934.jpeg?auto=compress&cs=tinysrgb&w=1600',
-  'AI Lab': 'https://images.pexels.com/photos/10782402/pexels-photo-10782402.jpeg?auto=compress&cs=tinysrgb&w=1600',
-  'Buying Guide': 'https://images.pexels.com/photos/13279384/pexels-photo-13279384.jpeg?auto=compress&cs=tinysrgb&w=1600'
+  Homelab: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80',
+  Hardware: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80',
+  'AI Lab': 'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1600&q=80',
+  'Buying Guide': 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=1600&q=80'
 };
 const primaryCategory = post.data.categories[0] ?? '';
-const coverImage = post.data.image ?? categoryImages[primaryCategory] ?? 'https://images.pexels.com/photos/29238152/pexels-photo-29238152.jpeg?auto=compress&cs=tinysrgb&w=1600';
+const coverImage = post.data.image ?? categoryImages[primaryCategory] ?? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80';
 const coverAlt = post.data.imageAlt ?? `${post.data.title} article image`;
 ---
 <BaseLayout title={post.data.title} description={post.data.description} image={coverImage}>
